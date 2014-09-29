@@ -1,0 +1,4 @@
+RewriteEngine on
+RewriteCond $1 !^(router\.php|assets|uploads|helpers|secureimage)
+RewriteRule ^(.*)$ router.php
+#RewriteRule ^.*$ index.php [NC,L]

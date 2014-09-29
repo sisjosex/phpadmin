@@ -1,0 +1,113 @@
+* {
+    box-sizing: border-box;
+}
+
+*:focus {
+    outline: none;
+}
+body {
+    font-family: Arial;
+    background-color: #3498CA;
+    padding: 0px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+}
+.login {
+    margin: 0 auto;
+    width: 300px;
+    display: table;
+    position: relative;
+    height: 100%;
+}
+.login-screen {
+    vertical-align: middle;
+    display: table-cell;
+    width: 100%;
+    position: relative;
+}
+
+.app-title {
+    text-align: center;
+    color: #777;
+}
+
+.login-form {
+    text-align: center;
+}
+.control-group {
+    margin-bottom: 10px;
+}
+
+input {
+    text-align: center;
+    background-color: #ECF0F1;
+    border: 2px solid transparent;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: 200;
+    padding: 10px 0;
+    width: 100%;
+    transition: border .5s;
+}
+
+input:focus {
+    border: 2px solid #3498DB;
+    box-shadow: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-focus-ring-color:  rgba(0, 0, 0, 0);
+}
+
+.btn {
+    border: 2px solid transparent;
+    background: #3498DB;
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 25px;
+    padding: 10px 0;
+    text-decoration: none;
+    text-shadow: none;
+    border-radius: 3px;
+    box-shadow: none;
+    transition: 0.25s;
+    display: block;
+    width: 250px;
+    margin: 0 auto;
+    text-align:center;
+    -webkit-appearance: none;
+}
+
+.btn:hover {
+    cursor:pointer;
+}
+
+.btn:hover {
+    background-color: #2980B9;
+}
+
+.login-link {
+    font-size: 12px;
+    color: #444;
+    display: block;
+    margin-top: 12px;
+}
+
+.help-inline {
+    color: #d45300;
+    font-size: 12px;
+    text-align:center;
+    display:block;
+}
+
+.app-title h1 {
+    font-size:22px;
+}
+
+.page {
+    background-color: #FFF;
+    padding: 20px;
+    border-radius: 5px;
+    transition: height .5s;
+}

@@ -1,4 +1,4 @@
 phpadmin
 ========
 
-Nice and easy admin for build backend/frontend
+Nice and easy admin for generate backend and implement frontend side also.
