@@ -27,7 +27,7 @@ Installation
     
     `http://localhost/phpadmin`
     
-    `http://localhost/admin`
+    `http://localhost/phpadmin/admin`
 
 - Admin Credentials
 
