@@ -25,9 +25,9 @@ Installation
 
 - Load in browser depending your environment maybe: 
     
-    `http://localhost/phpadmin`
+    `http://localhost/project1`
     
-    `http://localhost/phpadmin/admin`
+    `http://localhost/project1/admin`
 
 - Admin Credentials
 
