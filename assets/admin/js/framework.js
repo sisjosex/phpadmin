@@ -61,8 +61,10 @@ master_template.tr = '<tr/>';
 master_template.action = '<button class="btn btn-primary btn-large btn-block"><i class="icon "></i>Delete</button>';
 master_template.external = '<div class="external"/>';
 master_template.message = '<div class="message"><h3 class="title"></h3></div>';
-master_template.tab_buttons = '<div class="tabs" />';
-master_template.tab = '<div class="tab" />';
+master_template.tabs_container = '<div />';
+master_template.tabs = '<ul class="tabs" />';
+master_template.tab = '<li class="tab_content"><a class="title"></a></li>';
+master_template.tab_content = '<div class="tab" />';
 master_template.field_group = '<div class="field-group"><h3 class="title"></h3></div>';
 master_template.field_column = '<div class="field-column"/>';
 master_template.sidebar_menu = '<ul class="menu"><li class="group"><a class="text"></a></li></ul>';
@@ -675,6 +677,24 @@ widgets.pagination = function (element, settings) {
     return this;
 };
 
+widgets.tabs = function (element) {
+
+    var self = this;
+
+    this.init = function () {
+
+        element.idTabs();
+
+        return this;
+    };
+
+    this.reset = function() {
+
+    };
+
+    return this;
+};
+
 containers.form = function (model, container, module) {
 
     this.element = buildFromTemplate(model, 'form', container.form.settings);
@@ -705,9 +725,42 @@ containers.form = function (model, container, module) {
         var field_container = '';
         var field;
 
+        var tab_header = buildFromTemplate('', 'tabs_container');
+
+        self.element.append(tab_header);
+
+        current_tab = buildFromTemplate(model, 'tab_content');
+        current_tab.attr('id', model.table_name + '_' + 'tab_default');
+
+        tab_header.append(current_tab);
+
+        self.tabs = [];
+
+        //self.tabs.push({id: model.table_name + '_' + 'tab_default', title: ''});
+
         for (var key in model.field_group.form) {
 
+            var tab_changed = false;
+
             field = model.fields[model.field_group.form[key]];
+
+            var field_id = field.id ? field.id : field.key;
+            var field_key = field.id ? field.id : model.table_name + '_' + field_id;
+            var field_name = field.id ? field.id : model.table_name + '[' + field_id + ']';
+
+            if (field.tab) {
+
+                tab_changed = true;
+
+                current_tab = buildFromTemplate(model, 'tab_content');
+                current_tab.attr('id', model.table_name + '_' + 'tab_' + field_id);
+
+                //self.element.append(current_tab);
+
+                self.tabs.push({id: model.table_name + '_' + 'tab_' + field_id, title: field.tab});
+
+                tab_header.append(current_tab);
+            }
 
             if (!field) {
                 continue;
@@ -718,10 +771,6 @@ containers.form = function (model, container, module) {
             if (!field_element) {
                 continue;
             }
-
-            var field_id = field.id ? field.id : field.key;
-            var field_key = field.id ? field.id : model.table_name + '_' + field_id;
-            var field_name = field.id ? field.id : model.table_name + '[' + field_id + ']';
 
             field_container = buildFromTemplate(model, 'field');
 
@@ -766,7 +815,7 @@ containers.form = function (model, container, module) {
 
             if (field.type === 'hidden') {
 
-                this.element.append(field_element);
+                self.element.append(field_element);
 
             } else {
 
@@ -775,18 +824,18 @@ containers.form = function (model, container, module) {
 
             if (field.group) {
 
-                if (current_column != field.group) {
+                if ((current_column != field.group) || tab_changed) {
 
                     field_column = buildFromTemplate(model, 'field_column');
 
-                    this.element.append(field_column);
+                    current_tab.append(field_column);
 
                     current_column = field.group;
                 }
 
                 if (field.field_group) {
 
-                    if (current_group != field.field_group) {
+                    if ((current_group != field.field_group) || tab_changed) {
 
                         field_group = buildFromTemplate(model, 'field_group');
 
@@ -806,13 +855,13 @@ containers.form = function (model, container, module) {
 
             } else if (field.field_group) {
 
-                if (current_group != field.field_group) {
+                if ((current_group != field.field_group) || tab_changed) {
 
                     field_group = buildFromTemplate(model, 'field_group');
 
                     field_group.find('.title').text(field.field_group);
 
-                    this.element.append(field_group);
+                    current_tab.append(field_group);
 
                     current_group = field.field_group;
                 }
@@ -823,13 +872,36 @@ containers.form = function (model, container, module) {
 
                 if (field.type === 'hidden') {
 
-                    this.element.append(field_element);
+                    current_tab.append(field_element);
 
                 } else {
 
-                    this.element.append(field_container);
+                    current_tab.append(field_container);
                 }
             }
+        }
+
+        if(self.tabs.length > 1) {
+
+            var tab_container = buildFromTemplate('', 'tabs');
+
+            for(var i in self.tabs) {
+
+                var tab = self.tabs[i];
+
+                var tab_element = buildFromTemplate('', 'tab');
+
+                tab_element.find('.title').attr('href', '#' + tab.id);
+                tab_element.find('.title').text(tab.title);
+
+                tab_container.append(tab_element);
+            }
+
+            tab_header.prepend(tab_container);
+
+            self.widgets.tabs = new widgets['tabs'](tab_header);
+
+            self.widgets.tabs.init();
         }
 
         field_container = buildFromTemplate('', 'field_footer');

@@ -666,3 +666,42 @@ input {
     -webkit-transition: width 2s, height 2s,-webkit-transform 2s;  /* For Safari 3.1 to 6.0 */
     transition: width 2s, height 2s, transform 2s;
 }
+
+.tabs {
+    margin:0 auto;
+    text-align: center;
+    width:100%;
+    display:table;
+}
+.tabs > li { list-style:none; float:left;}
+.tabs > li > .title {
+    display:block;
+    padding:4px 0;
+    height:24px;
+    width:140px;
+    text-decoration:none!important;
+    margin:0px;
+    margin-left:0;
+    font:12pt Calibri;
+    color:#FFF;
+    background:#bbb;
+}
+.tabs > li > .title:hover {
+    height:28px;
+    padding:4px 0 6px;
+    background:#2980B9;
+    border-bottom:1px solid #181818;
+}
+.tabs > li > .title.selected {
+    height:30px;
+    padding:4px 0 8px;
+    background:snow;
+    color:#222;
+    font-weight:bold;
+    border-bottom:none;
+}
+
+.tab .grid {
+    width:100%;
+    max-width:100% !important;
+}
