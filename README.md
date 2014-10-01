@@ -1013,3 +1013,12 @@ class Dashboard extends Backend
 ```
 
 ** Now enjoy refresh admin, you can setup several interfaces like next screens: **
+
+![alt tag](https://raw.github.com/sisjosex/phpadmin/master/screenshots/Screenshot_5.png)
+
+![alt tag](https://raw.github.com/sisjosex/phpadmin/master/screenshots/Screenshot_6.png)
+
+![alt tag](https://raw.github.com/sisjosex/phpadmin/master/screenshots/Screenshot_8.png)
+
+![alt tag](https://raw.github.com/sisjosex/phpadmin/master/screenshots/Screenshot_7.png)
+
