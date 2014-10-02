@@ -12,6 +12,18 @@ Requirements
 
 `$sudo service apache2 restart`
 
+- Grunt for build .min files for js/css, inside `assets/admin/`
+
+`$npm install -g grunt-cli`
+
+`$npm install`
+
+`$grunt uglify`
+
+`$grunt cssmin`
+
+see http://gruntjs.com/ for more details
+
 Installation
 --------------
 
