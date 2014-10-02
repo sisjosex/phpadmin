@@ -690,6 +690,11 @@ widgets.tabs = function (element) {
 
     this.reset = function() {
 
+        var tabElement = element.find('.tabs .title.selected');
+
+        $(tabElement.attr('href')).hide();
+
+        tabElement.removeClass('selected');
     };
 
     return this;
@@ -799,13 +804,16 @@ containers.form = function (model, container, module) {
 
                 if (field.label !== false) {
 
-                    var label_element = buildFromTemplate(model, 'label', field);
+                    if($.trim(field.name) !== '') {
 
-                    label_element.text(field.name);
+                        var label_element = buildFromTemplate(model, 'label', field);
 
-                    label_element.attr('for', field_key);
+                        label_element.text(field.name);
 
-                    field_container.append(label_element);
+                        label_element.attr('for', field_key);
+
+                        field_container.append(label_element);
+                    }
                 }
 
                 self.validation_params = initFormField(self.validation_params, field, field_element, {field_id: field_id, field_name: field_name, field_key: field_key});
