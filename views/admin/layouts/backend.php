@@ -15,7 +15,7 @@
     <title><?php echo $title ?></title>
 
     <!-- Styles -->
-    <link type="text/css" href="<?php echo BASE_URL ?>assets/admin/css/style.min.css" rel="stylesheet">
+    <link type="text/css" href="<?php echo BASE_URL ?>assets/admin/css/style.css" rel="stylesheet">
 
     <!-- Uploader -->
     <link type="text/css" href="<?php echo BASE_URL ?>assets/admin/lib/dropzone/dropzone.min.css" rel="stylesheet">
@@ -66,6 +66,9 @@
     <!-- Scrollbar -->
     <link href="<?php echo BASE_URL ?>assets/admin/lib/scrollbar/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css">
     <script src="<?php echo BASE_URL ?>assets/admin/lib/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    <!-- Tabs -->
+    <script src="<?php echo BASE_URL ?>assets/admin/lib/jquery.idTabs/jquery.idTabs.min.js"></script>
 
     <!-- Google Maps -->
     <script>
