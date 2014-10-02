@@ -529,22 +529,26 @@ widgets.map = function (element, field, model) {
 
         if(self.map != undefined) {
 
-            google.maps.event.trigger(self.map, 'resize');
+            setTimeout(function(){
 
-            if(value && value.latitude && (self.value.latitude !== field.settings.center.latitude && self.value.longitude !== field.settings.center.longitude)) {
+                google.maps.event.trigger(self.map, 'resize');
 
-                var latLong = new google.maps.LatLng(self.value.latitude, self.value.longitude);
-                self.map.setCenter(latLong);
-                self.map.setZoom(field.settings.zoom);
-                self.addMarker(latLong);
+                if(value && value.latitude && (self.value.latitude !== field.settings.center.latitude && self.value.longitude !== field.settings.center.longitude)) {
 
-            } else {
+                    var latLong = new google.maps.LatLng(self.value.latitude, self.value.longitude);
+                    self.map.setCenter(latLong);
+                    self.map.setZoom(field.settings.zoom);
+                    self.addMarker(latLong);
 
-                var latLong = new google.maps.LatLng(field.settings.center.latitude, field.settings.center.longitude);
-                self.map.setCenter(latLong);
-                self.map.setZoom(field.settings.zoom);
-                self.addMarker(latLong);
-            }
+                } else {
+
+                    var latLong = new google.maps.LatLng(field.settings.center.latitude, field.settings.center.longitude);
+                    self.map.setCenter(latLong);
+                    self.map.setZoom(field.settings.zoom);
+                    self.addMarker(latLong);
+                }
+
+            }, 200);
         }
     }
 
